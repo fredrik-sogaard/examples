@@ -1,0 +1,13 @@
+<section class="ph3 ph4-ns mw7 center mb5">
+  <h2 class="b">{{block.listTitle}}</h2>
+  <p class="lh-copy o-80 mb4">{{block.listText}}</p>
+  <ul class="list pl0 flex flex-wrap">
+    {% for row in block.list %}
+      <li class="flex pv2 w-50">
+        {% if row.checkIcon %}{% include '_svg/check-circle.svg' %}{% endif %}
+        {% if row.closeIcon %}{% include '_svg/close-circle.svg' %}{% endif %}
+        <span style="line-height: 24px;" class="pl2 black-80">{{ row.text }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+</section>

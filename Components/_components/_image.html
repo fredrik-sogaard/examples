@@ -1,0 +1,39 @@
+{# Default car item image #}
+{% macro item(props) %}
+  {% set defaultProps = {
+     imageId: null,
+     width: '1200',
+     height: null,
+     crop: null,
+     class: null,
+     id: null
+  } %}
+  {% set props = props != null ? defaultProps | merge(props) : defaultProps %}
+  {% if props.height %}
+    {% set imageSize = props.width~'x'~props.height %}
+  {% else %}
+    {% set imageSize = props.width %}
+  {% endif %}
+  {% set externalImage = 'https://img.gs/mnhprjkmmk/'~imageSize~','~props.crop~'/http://prod-api.services.carweb.no/v1/images/'~props.imageId %}
+  <img id="{{props.id}}" class="{{props.class}}" src="{{externalImage}}" alt="" width="{{props.width}}" height="{{props.height}}">
+{% endmacro %}
+
+{# Car circle/avatar image #}
+{% macro circle(props) %}
+  {% set defaultProps = {
+     imageId: null,
+     width: '1200',
+     height: null,
+     crop: null,
+     class: null,
+     id: null
+  } %}
+  {% set props = props != null ? defaultProps | merge(props) : defaultProps %}
+  {% if props.height %}
+    {% set imageSize = props.width~'x'~props.height %}
+  {% else %}
+    {% set imageSize = props.width %}
+  {% endif %}
+  {% set externalImage = 'https://img.gs/mnhprjkmmk/'~imageSize~','~props.crop~'/http://prod-api.services.carweb.no/v1/images/'~props.imageId %}
+  <div class="br-100 cover" style="background: url({{externalImage}}); width: 100px; height: 100px;"></div>
+{% endmacro %}

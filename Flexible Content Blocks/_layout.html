@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+    <title>
+      {% if entry.title is defined %}
+        {{ entry.title }} -
+      {% elseif title is defined %}
+        {{ title }} -
+      {% endif %}
+      {{ siteName }}
+    </title>
+    <meta name="description" content="
+      {% if entry is defined and entry.mainContent is not empty %}
+        {{ entry.mainContent|hacksaw(hack='characters', limit='150', append=' ...') }}
+      {% else %}
+        Vi tilbyr legekonsultasjon hjemme hos deg selv. Du unngår både ventetid og reisevei. Våre leger er tilgjengelig alle dager hele året fra morgen til kveld.
+      {% endif %}
+    " />
+    <meta property="og:title" content="{% if entry.title is defined %}{{ entry.title }}{% endif %}" />
+    <meta property="og:site_name" content="{{ siteName }}" />
+    <meta property="og:url" content="{{ craft.request.url }}" />
+    <meta property="og:description" content="
+      {% if entry is defined and entry.mainContent is not empty %}
+        {{ entry.mainContent|hacksaw(hack='characters', limit='150', append=' ...') }}
+      {% else %}
+        Vi tilbyr legekonsultasjon hjemme hos deg selv. Du unngår både ventetid og reisevei. Våre leger er tilgjengelig alle dager hele året fra morgen til kveld.
+      {% endif %}
+    " />
+    <meta property="og:locale" content="{{craft.locale}}">
+    <meta property="og:image" content="https://www.legevisitt.no/resources/images/header-image-at-home.jpg"/>
+    <link rel="home" href="{{ siteUrl }}" />
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css /resources/styles/main.css -->
+    <link rel="stylesheet" href="/tmp/styles/main.css">
+    <!-- endbuild -->
+    <!-- Fonts -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T3M53LV');</script>
+    <!-- End Google Tag Manager -->
+  </head>
+
+  <body {% if template is defined %}class="template-{{template}}"{% endif %}>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3M53LV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    {# Navbar #}
+    {% include '_components/nav-bar.html' %}
+    <main id="content" role="main" class="pt5-ns">
+      {% block content %}
+      {% endblock %}
+      {# Footer #}
+      {% include '_components/footer.html' %}
+    </main>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!-- <script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[4]='MMERGE4';ftypes[4]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script> -->
+    <!-- build:js /resources/scripts/plugins.js -->
+    <script src="/resources/bower_components/magnific-popup/dist/jquery.magnific-popup.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js /resources/scripts/main.js -->
+    <script src="/tmp/scripts/bundle.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

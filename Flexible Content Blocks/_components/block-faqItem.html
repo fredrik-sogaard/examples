@@ -1,0 +1,12 @@
+<section class="ph3 ph4-ns mw8 center flex flex-wrap">
+  {% for relatedItem in block.relatedFaq %}
+    <article class="pa3 w-50-ns w-100">
+      <div class="bg-almost-white-color mb4 br2 pt4 ph4 h-100">
+        <h3 class="mt2 black-80 b">{{relatedItem.title}}</h3>
+        <div class="black-60 lh-copy">
+          {{relatedItem.mainContent}}
+        </div>
+      </div>
+    </article>
+  {% endfor %}
+</section>

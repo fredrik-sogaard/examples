@@ -1,0 +1,46 @@
+{% macro menu(props) %}
+  {% import '/_components/_svg' as svg %}
+  {% set defaultProps = {
+     class: '',
+     color: '',
+     frontpage: false
+  } %}
+
+  {% set props = props != null ? defaultProps | merge(props) : defaultProps %}
+
+  <header class="relative z-5 {{props.class}}" {% if props.frontpage %} style="background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 100%);{% endif %}">
+    <div class="mw8 center ph3-l pv3 flex flex-wrap justify-between">
+      <div class="ph3">
+        <a href="/" class="flex flex-row items-center link {{props.color}} f4">
+          {% if props.frontpage %}
+            {{ svg.logo({'color': '#fff'}) }}
+          {% else %}
+            {{svg.logoSmall({'color': props.color})}}
+            <span class="Graphik-Semibold pl3 dn db-ns">Mobelity</span>
+            <span style="padding-left: 4px;" class="dn  db-ns">by Frydenbø</span>
+          {% endif %}
+        </a>
+      </div>
+      <div class="f4-ns f5 Graphik-Medium tracked flex items-center ph3">
+        <a class="js-open-main-menu link pointer {{props.color}}">
+          MENY
+        </a>
+      </div>
+    </div>
+    <div class="js-main-menu bg-white absolute top-0 w-100 vh-100 dn o-0 flex-column justify-center z-2 overflow-x-hidden" >
+      <div class="mw8 center ph3-l pv3 flex flex-wrap justify-between absolute top-0 left-0 w-100">
+        <div class="ph3">
+          <a href="/" class="flex flex-row items-center link {{props.color}} f4">
+            {{svg.logoSmall({'color': 'blue-dark'})}}
+            <span class="Graphik-Semibold pl3 dn db-ns">Mobelity</span>
+            <span style="padding-left: 4px;" class="dn  db-ns">by Frydenbø</span>
+          </a>
+        </div>
+        <div class="f4-ns f5 Graphik-Medium tracked flex items-center ph3">
+          <a href="#" class="js-close-main-menu link dark-blue f4-ns f5 ttu">Lukk</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+{% endmacro %}

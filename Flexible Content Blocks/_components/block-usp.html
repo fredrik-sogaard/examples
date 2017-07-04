@@ -1,0 +1,12 @@
+<div class="w-33-ns pr4-ns mb4">
+  {% if block.image is not empty %}
+    {% set image = block.image.first() %}
+    <img src="{{image.getUrl('poster')}}" alt="{{image.title}}">
+  {% endif %}
+  {% if block.blockTitle %}
+    <h4 class="f4 mb0 darkest-blue-color">{{block.blockTitle}}</h4>
+  {% endif %}
+  {% if block.text %}
+    <div class="lh-copy darkest-blue-color o-80">{{block.text}}</div>
+  {% endif %}
+</div>

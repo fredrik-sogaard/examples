@@ -1,0 +1,10 @@
+<section class="mw7 center ph3 ph4-ns mv5">
+  <ul class="pl0 flex flex-wrap">
+    {% for subPage in entry.children() %}
+      <div class="flex items-center mv4 mr4">
+        <img src="/resources/images/plus-icon.svg" role="presentation">
+        <a class="ml2 f4-ns link dark-blue-color pb1 bb bw1 b--primary-color" href="{{subPage.url}}">{{subPage.title}}</a>
+      </div>
+    {% endfor %}
+  </ul>
+</section>

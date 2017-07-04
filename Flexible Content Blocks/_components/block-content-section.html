@@ -1,0 +1,24 @@
+<section class="pv4 pv5-ns {{block.backgroundColor}}">
+  <div class="ph3 ph4-ns pv4 mw-wide center flex flex-wrap items-center">
+    <div class="w-60-ns">
+      {% if block.subTitle %}
+        <h4 class="ttu f6 b {% if block.backgroundColor == 'bg-dark-blue-color' %}almost-white-color{% endif %} light-orange-color tracked">{{block.subTitle}}</h4>
+      {% endif %}
+      {% if block.blockTitle %}
+        <h1 class="f1-ns {% if block.backgroundColor == 'bg-dark-blue-color' %}almost-white-color{% endif %} dark-blue-color b lh-title measure-narrow mv0">{{block.blockTitle}}</h1>
+      {% endif %}
+      {% if block.text %}
+        <div class="f4 {% if block.backgroundColor == 'bg-dark-blue-color' %}almost-white-color{% endif %} gray-color lh-copy measure">{{block.text}}</div>
+      {% endif %}
+      {% if block.linkTitle and block.blockLink is not empty%}
+        <div class="flex items-center mv4">
+          <img src="/resources/images/plus-icon{% if block.backgroundColor == 'bg-dark-blue-color' %}-white{% endif %}.svg" role="presentation">
+          <a class="ml2 f4-ns link {% if block.backgroundColor == 'bg-dark-blue-color' %}almost-white-color{% endif %} dark-blue-color pb1 bb bw1 b--primary-color" href="{{block.blockLink.first().url}}">{{block.linkTitle}}</a>
+        </div>
+      {% endif %}
+    </div>
+    {% if block.image is not empty %}
+      <img class="img w-40-ns w-100 h-100"  src="{{block.image.first().url}}" alt="{{block.image.first().title}}">
+    {% endif %}
+  </div>
+</section>

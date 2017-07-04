@@ -1,0 +1,93 @@
+{% extends "_layout" %}
+
+{% import '/_components/_kalkulator' as kalkulator %}
+{% import '/_components/_svg' as svg %}
+{% import '/_components/_car' as car %}
+{% import '/_components/_buttons' as button %}
+{% import '/_components/_checkout' as checkout %}
+{% import '/_components/_menu' as menu %}
+{% import '/_components/_image' as image %}
+
+{% set title = "Prøvekjøring" %}
+
+{% block content %}
+
+  {{menu.menu({'color': 'dark-blue'})}}
+  {% set carId = craft.request.getParam('car') %}
+  {% set carData = craft.placid.request('car', {
+     segments: {
+      carId: carId
+     }
+  }) %}
+
+  {% set apiProduct = carData.data[0] %}
+
+  {% set imageRequest = craft.placid.request('images', {
+     segments: {
+       carId: carId
+     }
+  }) %}
+
+  <section class="white pt7-ns pb5 pb7-ns bg-gray" id="js-try">
+    <div class="mw8 center cf black">
+        <div class="ph2 ph3-ns flex-ns flex-wrap">
+          <div class="col-12 col-9-m col-9-l">
+            <div class="flex flex-wrap mt5 mt3-l ph3-ns">
+              <div class="col-12 col-6-ns order-1 order-0-ns">
+                <h1 class="Graphik-Semibold f2 dark-blue mt4 mt0-ns">Bestill prøvekjøring</h1>
+                <p class=" f5 mb5 mt5 mt3-l dark-blue lh-copy">Fyll ut skjemaet under og vi kontakter snarest deg for nærmere avtale.</p>
+              </div>
+              <div class="col-2-ns col-12">
+                {{ image.circle({'imageId': imageRequest.data[0].Id, 'width': 200, 'id': 'car-image', 'class': 'h-100'}) }}
+              </div>
+              <div class="col-4-ns col-12">
+                <h2 class="f4 Graphik-Medium lh-title">{{apiProduct.ProspectHeading}}</h2>
+              </div>
+            </div>
+
+            <form accept-charset="UTF-8" action="https://formkeep.com/f/2ea2e7334148" method="POST" @submit="validateBeforeSubmit">
+              <div class="flex flex-wrap bg-white ma3-ns pt3 pt5-ns pb2-ns ph3">
+                <input type="hidden" name="prospect_heading" value="{{apiProduct.ProspectHeading}}">
+                <input type="hidden" name="car_id" value="{{carId}}">
+                {{checkout.input({
+                  nameSpace: 'firstName',
+                  label: 'Fornavn',
+                  validate: 'required',
+                  placeholder: 'Fornavn'
+                })}}
+
+                {{checkout.input({
+                  nameSpace: 'lastName',
+                  label: 'Etternavn',
+                  validate: 'required',
+                  placeholder: 'Etternavn'
+                })}}
+
+                {{checkout.input({
+                  nameSpace: 'phone',
+                  label: 'Telefon',
+                  validate: 'required|numeric',
+                  placeholder: 'Telefonnummer'
+                })}}
+
+                {{checkout.input({
+                  nameSpace: 'email',
+                  label: 'Epost',
+                  validate: 'required|email',
+                  placeholder: 'Epostadresse'
+                })}}
+              </div>
+              <div class="mh3-ns">
+                {{ checkout.divider({}) }}
+              </div>
+              <div class="flex mh3">
+                {{buttons.submit({text: 'Bestill prøvekjøring', class: 'bg-green bw0 pointer'})}}
+              </div>
+            </form>
+          </div>
+        </div>
+
+    </div>
+  </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{
+  "name": "craft-starter-kit",
+  "version": "1.0.0",
+  "description": "Base starting point for Craft CMS 3 projects. Built for fast setup and easy extendability.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "web",
+    "craft cms",
+    "php"
+  ],
+  "author": "https://github.com/Feedsystem",
+  "repository": "Feedsystem/craft-starter-kit",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "laralix-imagemin": "^2.0.2",
+    "laravel-elixir": "^6.0.0-15",
+    "laravel-elixir-browsersync-official": "^1.0.0",
+    "laravel-elixir-postcss": "^0.5.0",
+    "laravel-elixir-webpack-official": "^1.0.10",
+    "postcss-easy-import": "^2.1.0",
+    "precss": "^2.0.0"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "tachyons": "^4.7.4"
+  }
+}

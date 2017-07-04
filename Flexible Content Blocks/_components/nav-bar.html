@@ -1,0 +1,51 @@
+{% set timezone = 'Europe/Oslo' %}
+
+{% if globalSettings.serviceUnavailable %}
+  {% set statusBarText = globalSettings.serviceUnavailableText %}
+{% elseif ("now"|date('H', timezone)|number_format) >= ( globalSettings.openFrom | date('H', timezone)|number_format) and ("now"|date('H', timezone)|number_format) < ( globalSettings.openTo | date('H', timezone)|number_format) %}
+  {% set statusBarText = 'Lege er tilgjengelig i Oslo og Bærum. Ventetid er nå ' ~ globalSettings.estimatedWaitTime %}
+{% else %}
+  {% set statusBarText = 'Legevisitt er for øyeblikket stengt. Våre åpningstider er ' ~ globalSettings.openFrom | date('H', timezone) ~ ':00-' ~ globalSettings.openTo | date('H', timezone) ~ ':00.' %}
+{% endif %}
+
+<section class="bg-white fixed-ns left-0-ns right-0-ns w-100 bb b--black-05 z-1">
+  <nav class="navbar flex items-center pv4-ns pv3 ph3 ph4-ns mw-wide center ">
+    <div class="flex-auto flex items-center">
+      <a href="/"><img class="h-100 navbar__logo" src="/resources/images/logo-secondary.svg" role="presentation"></a>
+      <ul class="list pl0 mv0 dn db-ns">
+        <li class="dn mr3 dib-ns"><a class="link dark-blue-color underline-hover" href="/faq">Spørsmål og svar</a></li>
+        <li class="dn mr3 dib-ns"><a class="link dark-blue-color underline-hover" href="/priser">Pris</a></li>
+        <li class="dn dib-ns"><a class="link dark-blue-color underline-hover" href="/om-oss">Om oss</a></li>
+      </ul>
+    </div>
+    <div class="dn dib-ns">
+      <span class="dn-m bg-washed-yellow ph2 black-50 f5 lh-title">{{statusBarText}}</span>
+      {% if globalSettings.serviceUnavailable %}
+        {{null}}
+      {% elseif ("now"|date('H', timezone)|number_format) >= ( globalSettings.openFrom | date('H', timezone)|number_format) and ("now"|date('H', timezone)|number_format) < ( globalSettings.openTo | date('H', timezone)|number_format) %}
+        {% if entry is defined and entry.type == 'businessPages' %}
+          <a class="dn navbar--btn ml3 bg-primary-color f6 f5-l pv2 ph3 link white br2 tc b" href="/bestilling">Bestill lege <span class="o-70 white">kr {{entry.price}},-</span></a>
+        {% else %}
+          <a class="dn navbar--btn ml3 bg-primary-color f6 f5-l pv2 ph3 link white br2 tc b" href="/bestilling">Bestill lege <span class="o-70 white">kr 1590,-</span></a>
+        {% endif %}
+      {% endif %}
+    </div>
+
+    {# Mobile stuff #}
+    <div id="js-menu-trigger" class="flex items-center clip-ns db dn-ns">
+      <a class="link white mr2" href="#">Meny</a>
+      <img src="/resources/images/nav-icon.svg" role="presentation">
+    </div>
+    <div id="mobile-menu" class="dn absolute bg-primary-color top-0 bottom-0 left-0 right-0 w-100 z-2 pa3">
+      <svg class="absolute right-0 fr top-0 pa3 pointer" id="js-close" width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke-width="2" stroke="#FFF" fill="none" fill-rule="evenodd" opacity="1"><circle cx="11.5" cy="11.5" r="11"/><path d="M15.742 7.258l-8.485 8.485M15.742 15.743L7.257 7.258"/></g></svg>
+      <a href="/"><img class="navbar__logo" src="/resources/images/logo-primary.svg" role="presentation"></a>
+      <ul class="list pl0 mt4">
+        <li class="mv3"><a class="link b white f3 underline-hover" href="/faq">Spørsmål og svar</a></li>
+        <li class="mv3"><a class="link b white f3 underline-hover" href="/priser">Pris</a></li>
+        <li class="mv3"><a class="link b white f3 underline-hover" href="/om-oss">Om oss</a></li>
+        <li class="mv3"><a class="link b white f3 underline-hover" href="/bestilling">Bestill lege</a></li>
+        <span class="white o-80 f5 lh-title">{{statusBarText}}</span>
+      </ul>
+    </div>
+  </nav>
+</section>

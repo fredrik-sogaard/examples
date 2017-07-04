@@ -1,0 +1,41 @@
+{% extends "_layout" %}
+
+{% block content %}
+  {% set hasBackground = 0 %}
+  <article class="mt0 pt4-ns pb4">
+    <section class="pt4-ns ph3 ph4-ns mw7 center">
+      <h1 class="b f2 f1-ns dark-blue-color b lh-title measure">{{ entry.title }}</h1>
+      {% if entry.intro %}
+        <div class="f3-ns f4 gray-color lh-copy">{{entry.intro}}</div>
+      {% endif %}
+    </section>
+    {% for block in entry.blocks %}
+      {% switch block.type %}
+        {% case 'usp' %}
+          {% include '/_components/block-usp' %}
+        {% case 'text' %}
+          {% include '/_components/block-text' %}
+        {% case 'price' %}
+          {% include '/_components/block-price' %}
+        {% case 'faqItem' %}
+          {% include '/_components/block-faqItem' %}
+        {% case 'quote' %}
+          {% include '/_components/block-quote' %}
+        {% case 'faqIist' %}
+          {% include '/_components/block-faqList' %}
+        {% case 'list' %}
+          {% include '/_components/block-list' %}
+        {% case 'image' %}
+          {% include '/_components/block-image' %}
+        {% case 'cta' %}
+          {% include '/_components/block-cta' %}
+      {% endswitch %}
+    {% endfor %}
+
+    {% if entry.section.handle == "pages" %}
+      {% if entry.children().total() != 0 %}
+        {% include '/_components/sub-page-nav' %}
+      {% endif %}
+    {% endif %}
+  </article>
+{% endblock %}

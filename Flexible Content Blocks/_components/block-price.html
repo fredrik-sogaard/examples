@@ -1,0 +1,18 @@
+<section class="pt4-ns ph3 ph4-ns mw7 center mb5">
+  <div class="bg-light-blue-color pa4 br2">
+    <hgroup class="tc">
+      <h2 class="mt0 mb0 dark-blue-color f-giga">{{block.price}} kr</h2>
+      <p class="mt0 dark-blue-color">{{block.subTitle}}</p>
+    </hgroup>
+    {% if block.list %}
+      <ul class="ml0 mv4 pa0 list flex flex-wrap justify-between">
+      {% for row in block.list %}
+      <li class="flex pv2 flex-auto">
+        {% include '_svg/check-circle' %}
+        <span style="line-height: 24px;" class="pl2 dark-blue-color b">{{ row.list }}</span>
+      </li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</section>

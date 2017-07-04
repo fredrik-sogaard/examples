@@ -1,0 +1,44 @@
+{% import '/_components/_buttons' as button %}
+{% import '/_components/_menu' as menu %}
+{% import '/_components/_image' as image %}
+
+<section>
+  {{buttons.submit({
+    text: 'Send inn',
+    class: 'bg-dark-green'
+  })}}
+  {{buttons.submit({
+    text: 'Send inn',
+    class: 'bg-green'
+  })}}
+  {{buttons.button({
+    text: 'Default Button',
+    class: 'bg-green'
+  })}}
+  {{button.forwardPill({
+    href: '/checkout/levering',
+    text: 'Forward Step',
+    class: 'ml1'
+  })}}
+  {{button.back({
+     text: 'Back Step',
+     href: '/checkout/finansiering',
+     class: 'pl0-l pl0-m'
+  })}}
+  {{menu.menu({
+    'color': 'dark-blue'
+  })}}
+  {{menu.menu({
+    'color': 'white'
+  })}}
+  {{menu.menu({
+    'color': 'white',
+    frontpage: 'true'
+  })}}
+  {{image.item({
+    'imageId': imageRequest.data[0].Id,
+    'width': 1200,
+    'id': 'car-image',
+    'class': 'w-100'
+  })}}
+</section>

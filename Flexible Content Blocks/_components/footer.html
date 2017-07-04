@@ -1,0 +1,51 @@
+{% set timezone = 'Europe/Oslo' %}
+
+<footer class="mb0 pt5 pb2 bg-almost-white-color">
+  <section class="ph3 ph4-ns mw-wide center flex flex-wrap">
+    <ul class="flex-auto list pl0 mr4">
+      <h4 class="ttu f6 b light-orange-color tracked">Finn frem</h4>
+      <li class="pv2"><a class="b dark-blue-color underline-hover link" href="/">Forside</a></li>
+      <li class="pv2"><a class="b dark-blue-color underline-hover link" href="/bestilling">Bestill lege hjem</a></li>
+      <li class="pv2"><a class="b dark-blue-color underline-hover link" href="/faq">Spørsmål og svar</a></li>
+      <li class="pv2"><a class="b dark-blue-color underline-hover link" href="https://medium.com/@Legevisitt">Blogg</a></li>
+      <li class="pv2"><a class="b dark-blue-color underline-hover link" href="/doctor-registration">For leger</a></li>
+
+      {% for page in craft.entries.section('pages').level(1) %}
+        <li class="pv2"><a class="b dark-blue-color underline-hover link" href="{{page.url}}">{{page.title}}</a></li>
+      {% endfor %}
+    </ul>
+    <ul class="flex-auto list pl0 mr4">
+      <h4 class="ttu f6 b light-orange-color tracked">Åpningstider</h4>
+      <li class="pv2 b dark-blue-color">Mandag-fredag: {{globalSettings.openFrom | date('H', timezone)}}:00-{{globalSettings.openTo | date('H', timezone)}}:00</li>
+      <li class="pv2 b dark-blue-color">Lørdag og søndag: 10:00-20:00</li>
+      <h4 class="ttu f6 b light-orange-color tracked mt4">Kontakt oss</h4>
+      <li class="pv2"><a class="b dark-blue-color underline-hover link" href="tel:+4792116117">Telefon 92 116 117</a></li>
+      <li class="pv2"><a class="b dark-blue-color underline-hover link" href="mailto:kontakt@legevisitt.no">kontakt@legevisitt.no</a></li>
+      <li class="pv2"><a class="b dark-blue-color underline-hover link" href="https://facebook.com/legevisitt" target="_blank">Facebook</a></li>
+      <li class="pv2"><a class="b dark-blue-color underline-hover link" href="https://www.instagram.com/legevisitt/" target="_blank">Instagram</a></li>
+    </ul>
+    <ul class="flex-auto list pl0">
+      <h4 class="ttu f6 b light-orange-color tracked">Meld deg på vårt nyhetsbrev</h4>
+      <form
+        id="subscribe-form"
+        action="//legevisitt.us4.list-manage.com/subscribe/post-json?u=e32275b8cf0e801c91e5fd39e&id=bbef443cf0&c=?"
+        method="get"
+        class="w-100">
+        <input type="hidden" name="redirect" value="true">
+        <fieldset class="cf bn ma0 pa0">
+          <div class="">
+            <input style="height: 50px;" class="w-70 f5 mb3 mb0-ns input-reset fl black-80 bg-white pa3 lh-solid b--black-10 ba br2 br--left" placeholder="Din epost..." type="email" value="" name="EMAIL" >
+            <input style="height: 50px;" class="w-30 f6 b button-reset fl pv3 tc bg-dark-blue-color white pointer b--black-10 ba br2 br--right" type="submit" value="Abonner" name="subscribe" id="mc-embedded-subscribe">
+          </div>
+        </fieldset>
+        <div class="cf mw6 center pt2 tc">
+          <div style="height: 18px;" id="subscribe-result" class="black-40 f5 lh-copy"></div>
+        </div>
+      </form>
+      <img class="img w4" src="/resources/images/health-16.svg" role=presentation />
+    </ul>
+  </section>
+  <section class="ph3 ph4-ns mw-wide center bt b--black-10 pv2 mt4">
+    <p class="lh-copy f5 o-60 tc tl-ns">© Legevisitt AS - Maries vei 38, 1363 Høvik Org. nr. 917 491 089.</p>
+  </section>
+</footer>

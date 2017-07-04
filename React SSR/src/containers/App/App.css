@@ -1,0 +1,135 @@
+@font-face {
+    font-family:"Neuzeit S LT W01 Book";
+    src:url("/fonts/840b8bdf-7d26-449a-9620-8cb6663f18cc.eot?#iefix");
+    src:url("/fonts/840b8bdf-7d26-449a-9620-8cb6663f18cc.eot?#iefix") format("eot"),url("/fonts/d741af6b-26f4-4e34-b55d-432ccade3280.woff2") format("woff2"),url("/fonts/77aaeb7b-86f4-47a1-8196-74a660dd0919.woff") format("woff"),url("/fonts/efdf74e6-bfd4-466d-93fd-4f8f4d55b80c.ttf") format("truetype"),url("/fonts/be8d3917-a4cf-4d8f-b767-4e84bcbe300c.svg#be8d3917-a4cf-4d8f-b767-4e84bcbe300c") format("svg");
+  }
+
+/* TYPOGRAPHY */
+html {
+  font-family: "Neuzeit S LT W01 Book", sans-serif;;
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color: #373a3c;
+}
+
+.neuzeit-book {
+  font-family: 'Neuzeit S LT W01 Book', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* UTILITIES */
+.vw-100 {
+  width: 100vw;
+}
+
+.vh-adapt {
+  height: calc(100vh - 3rem);
+}
+
+.h-200 {
+  height: 200%;
+}
+
+.z--999 {
+  z-index: -999;
+}
+
+.mb8 {
+  margin-bottom: 24rem;
+}
+
+.fill-black {
+  fill: #000;
+}
+
+.skeleton {
+  border-color: rgba(167, 182, 194, 0.2) !important;
+  border-radius: 2px;
+  box-shadow: none !important;
+  background: rgba(167, 182, 194, 0.2) !important;
+  background-clip: padding-box !important;
+  cursor: default;
+  color: transparent !important;
+  -webkit-animation: 2000ms linear infinite glow;
+  animation: 2000ms linear infinite glow;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* ANIMATION */
+@keyframes glow {
+  0%,
+  100% {
+    border-color: rgba(167, 182, 194, 0.2);
+    background-color: rgba(167, 182, 194, 0.2);
+  }
+
+  50% {
+    border-color: rgba(92, 112, 128, 0.2);
+    background-color: rgba(92, 112, 128, 0.2);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate {
+  animation: rotate 0.4s forwards;
+  transition: all 0.4s;
+}
+
+.fade-enter {
+  opacity: 0;
+  /*z-index: 1;*/
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+}
+
+.fade-leave {
+  opacity: 1;
+  z-index: 1;
+}
+
+.fade-leave.fade-leave-active {
+  opacity: 0;
+  transition: opacity 250ms ease-in;
+}
+
+.fade-appear {
+  opacity: 0;
+  /*z-index: 1;*/
+}
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+}
+
+/* COLORS */
+.gray {
+  color: #7c7c7c;
+}
+
+.red {
+  color: #ef5535;
+}
+
+.brand-dark {
+  color: #262630;
+}

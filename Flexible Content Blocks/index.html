@@ -1,0 +1,67 @@
+{% extends "_layout" %}
+{% set template = "home" %}
+{% set timezone = 'Europe/Oslo' %}
+{% block content %}
+  <article class="mt0 pt4-ns">
+    {# Header with tagline #}
+    <header class="flex flex-column justify-end justify-center-ns pv5-ns pt5 pb3 ph3 ph4-ns mw-wide center">
+      <h1 class="f1-ns dark-blue-color b lh-title measure center tc mv0 w-90-m w-90-ns">{{entry.heading}}</h1>
+      <h2 class="f4 f3-ns gray-color lh-copy measure center tc w-90-m w-90-ns">{{entry.subHeading}}</h2>
+      <div class="mv3 flex flex-wrap items-center justify-center">
+        {% if globalSettings.serviceUnavailable %}
+          <div class="tc dn-l bg-washed-yellow ph2 black-50 f5 lh-title">{{globalSettings.serviceUnavailableText}}</div>
+        {% elseif ("now"|date('H', timezone)|number_format) >= ( globalSettings.openFrom | date('H', timezone)|number_format) and ("now"|date('H', timezone)|number_format) < ( globalSettings.openTo | date('H', timezone)|number_format) %}
+          <a class="w-25-l w-30-m w-100 mr3-ns mb2 mb0-ns bg-primary-color f6 f5-l pv3 ph4 link white br2 tc db b" href="/bestilling">Bestill på nett</a>
+          <a class="w-25-l w-30-m w-100 bg-white ba b--primary-color f6 f5-l pv3 ph4 link primary-color br2 tc db b" href="tel:+4792116117">Bestill på telefon 92 116 117</a>
+        {% else %}
+          <div class="tc dn-l bg-washed-yellow ph2 black-50 f5 lh-title">Legevisitt er for øyeblikket stengt. Våre åpningstider er {{globalSettings.openFrom | date('H', timezone)}}:00-{{globalSettings.openTo | date('H', timezone)}}:00.</div>
+        {% endif %}
+      </div>
+    </header>
+    {# Key Selling Points #}
+    <section class="ph3 ph4-ns mw-wide center">
+      <div class="flex flex-wrap justify-center ph2-ns mv5">
+        {% for block in entry.blocks %}
+          {% switch block.type %}
+            {% case 'usp' %}
+              {% include '/_components/block-usp' %}
+          {% endswitch %}
+        {% endfor %}
+      </div>
+    </section>
+    {# Step by step explanation #}
+    <section class="bg-light-blue-color pv4 mv4-ns">
+      <div class="ph3 ph4-ns pv4 mw-wide center">
+        <h3 class="ttu f6 b light-orange-color tracked">Enkelt og smart</h3>
+        <h2 class="b f2 f1-ns dark-blue-color b lh-title measure mt0">Slik fungerer det</h2>
+        <div class="flex flex-wrap justify-center ph2-ns">
+          <div class="w-33-ns mv3 pr4-ns">
+            <img class="img w4" src="/resources/images/health-22.svg" role="presentation">
+            <h4 class="ttu f6 b light-orange-color tracked">På nett eller telefon</h4>
+            <h4 class="f3 b mb0 mt0 dark-blue-color">Bestill en legevisitt</h4>
+            <p class="lh-copy darkest-blue-color o-80">Bestill på nett, eller via telefonnummer 92&nbsp;116&nbsp;117</p>
+          </div>
+          <div class="w-33-ns mv3 pr4-ns">
+            <img class="img w4" src="/resources/images/shopify_pastel-06.svg" role="presentation">
+            <h4 class="ttu f6 b light-orange-color tracked">Når det passer deg</h4>
+            <h4 class="f3 b mb0 mt0 dark-blue-color">Legen ringer deg</h4>
+            <p class="lh-copy darkest-blue-color o-80">Legen ringer når han eller hun er på vei.</p>
+          </div>
+          <div class="w-33-ns mv3 pr4-ns">
+            <img class="img w4" src="/resources/images/health-23.svg" role="presentation">
+            <h4 class="ttu f6 b light-orange-color tracked">Ingen reisevei</h4>
+            <h4 class="f3 b mb0 mt0 dark-blue-color">Legevisitt hjemme</h4>
+            <p class="lh-copy darkest-blue-color o-80">Legen kommer hjem til deg, innen {{globalSettings.estimatedWaitTime}}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    {# Content Sections #}
+    {% for block in entry.blocks %}
+      {% switch block.type %}
+        {% case 'contentSection' %}
+          {% include '/_components/block-content-section' %}
+      {% endswitch %}
+    {% endfor %}
+  </article>
+{% endblock %}

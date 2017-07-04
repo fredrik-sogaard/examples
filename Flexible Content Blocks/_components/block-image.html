@@ -1,0 +1,6 @@
+{% if block.image %}
+  {% set image = block.image.first() %}
+  <section class="pt4-ns ph3 ph4-ns mw7 center">
+    <img src="{{image.url}}" alt="{{image.title}}">
+  </section>
+{% endif %}
